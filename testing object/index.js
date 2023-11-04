@@ -69,10 +69,12 @@ function newProject() {
             projectName: title,
             tasks: [
                 {
-                    taskTitle: ''
+                    taskTitle: '',
+                    description: '',
+                    priority: '',
                 }
             ]
-        }
+        }  
         //projectList.push(title);
         projectData.push(newProjectTitle);
         //console.log(projectList);
