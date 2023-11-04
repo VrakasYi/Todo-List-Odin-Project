@@ -1,5 +1,22 @@
-let projectList = ['Default'];
-let projectNew =[];
+const projectListDIV = document.getElementById('projectList');
+const projetData = [
+    {
+        projectName: 'Default',
+        tasks: [
+            {
+                title: 'Code'
+            },
+        ]
+    }
+]
+let projectList = ['Default']; //list of project names
+let projectNew =[]; //list to compare exisitng project names
+let itemList = {}; //
+
+const project = {
+    projectName: '',
+    tasks: []
+};
 
 function Item(title, description, dueDate, priority) {
     return {
@@ -10,7 +27,6 @@ function Item(title, description, dueDate, priority) {
 function newProject() {
     const newListButton = document.getElementById('newList');
     const popup = document.getElementById('popup');
-    const projectListDIV = document.getElementById('projectList');
     
     //Popup to add new project
     const form = document.getElementById('newListForm');
@@ -23,7 +39,8 @@ function newProject() {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             let title = document.getElementById('title').value;
-            console.log(title);            
+            console.log(title);  
+            itemList[title] = [];
             projectList.push(title);
             console.log(projectList);
             popup.classList.remove('active');
@@ -39,9 +56,27 @@ function newProject() {
             // create new project html
             let projectEntry = document.createElement('button');
             projectEntry.textContent = project;
+            projectEntry.id = project;
             projectListDIV.appendChild(projectEntry);
             projectNew.push(project);
         }
     });
 }
 newProject();
+
+
+//reference the list of to do container
+const listBox = document.getElementById('listBox');
+
+function populateTheListBox() {
+    projectListDIV.addEventListener('click', (event) => {
+        let projectId = event.target.id;
+        listBox.innerHTML = ''; //clear the list box
+        
+        let listEntry = document.createElement('div');
+        listEntry.textContent = itemList[projectId];   
+    })
+}
+
+function addNewItem() {
+}
