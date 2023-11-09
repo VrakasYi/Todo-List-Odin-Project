@@ -29,6 +29,8 @@ const projectListModule = (() => {
     const popup = document.getElementById('popup');
     const form = document.getElementById('newListForm');
     const listBox = document.getElementById('listBox');
+    let projectId;// Initialize the projectId variable
+
 
     newListButton.addEventListener('click', () => {
         popup.classList.remove('inactive');
@@ -49,11 +51,12 @@ const projectListModule = (() => {
 
     projectListDIV.addEventListener('click', (event) => {
         if (event.target.tagName === 'BUTTON') {
-            const projectId = event.target.id;
+            projectId = event.target.id;
             listBox.innerHTML = '';
     
             const listEntry = document.createElement('div');
             listEntry.textContent = projectId;
+            listEntry.id = projectId;
     
             const addNewTaskButton = document.createElement('button');
             addNewTaskButton.textContent = 'Add new task';
@@ -65,21 +68,44 @@ const projectListModule = (() => {
             const findObject = projectDataModule.getProject(projectId);
         };
     });
+    const getProjectId = () => projectId;
+
+
+    return{
+        getProjectId,
+    };
 })();
 
 //ListBoxModule.js
 const ListBoxModule = (() => {
     //reference the list of to do container
     const listBox = document.getElementById('listBox');
-    //reference the new task pop up form
+    //reference the new task pop up form div
     const newTaskPop = document.getElementById('newTaskPop');
-
+    //reference the new task pop up form
+    const taskForm = document.getElementById('newTaskForm');
+    let currentProject;
+    
     listBox.addEventListener('click', (event) => {
         if (event.target.id === 'newTaskButton') {
             console.log('you need a pop up');
-            newTaskPop.classList.remove('inactive')
-            newTaskPop.classList.add('active')
+            newTaskPop.classList.remove('inactive');
+            newTaskPop.classList.add('active');
         };
+    });
+    
+    taskForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        //reference the div id of the selected project 
+        let projectId = projectListModule.getProjectId();
+        console.log(projectId);
+        let tasktitle = document.getElementById('taskTitle').value;
+        currentProject = projectDataModule.getProject(projectId);
+        // projectDataModule.projectData[currentProject].tasks = tasktitle; 
+        currentProject.tasks.push(tasktitle);
+        console.log(projectId, currentProject, projectDataModule);
+        newTaskPop.classList.remove('active');
+        newTaskPop.classList.add('inactive');
     });
 
 })();
