@@ -91,3 +91,38 @@ function newProject() {
     })
 }
 newProject();
+
+
+
+
+
+
+
+// const displaytasks = () => {
+//     listBox.innerHTML = '';//clear the div of text
+    
+//     //display the project title
+//     const listEntry = document.createElement('div');
+//     listEntry.textContent = `Project: ` + projectId;
+//     listEntry.id = projectId;
+//     listBox.appendChild(listEntry);
+
+
+//     //display the list of tasks
+//     //get the current object
+//     const currentProject = () =>  projectDataModule.getProject(projectId);
+//     //create a container
+//     const tasklist = document.createElement('div');
+//     currentProject.tasks.forEach(task => {
+//         const taskDiv = document.createElement('div');
+//         taskDiv.textContent = task.taskTitle;
+//         tasklist.appendChild(taskDiv);
+//     });
+    
+
+//     //display the add new task button
+//     const addNewTaskButton = document.createElement('button');
+//     addNewTaskButton.textContent = 'Add new task';
+//     addNewTaskButton.id = 'newTaskButton'
+//     listEntry.appendChild(addNewTaskButton);    
+// }

@@ -1,6 +1,15 @@
 // projectDataModule.js
 const projectDataModule = (() => {
-    const projectData = [];
+    const projectData = [
+        {
+            projectName: 'Default',
+            tasks: [
+                {
+                    taskTitle: 'Code'
+                },
+            ]
+        }
+    ];
 
     const addProject = (title) => {
         const newProject = {
@@ -14,10 +23,11 @@ const projectDataModule = (() => {
         return projectData.find(project => project.projectName === title);
     }
 
+
     return {
         addProject,
         getProject,
-        projectData
+        projectData        
     };
 })();
 
@@ -30,7 +40,23 @@ const projectListModule = (() => {
     const form = document.getElementById('newListForm');
     const listBox = document.getElementById('listBox');
     let projectId;// Initialize the projectId variable
+    
 
+    function setProjectId(id) {
+        projectId = id
+    };
+    
+    //display the list of projects
+    const displayProjects = () => {
+        projectListDIV.innerHTML = '';
+        projectDataModule.projectData.forEach(project => {
+            const projectEntry = document.createElement('button');
+            projectEntry.textContent = project.projectName;
+            projectEntry.id = project.projectName;
+            projectListDIV.appendChild(projectEntry);
+        });
+    };
+    displayProjects();
 
     newListButton.addEventListener('click', () => {
         popup.classList.remove('inactive');
@@ -41,39 +67,75 @@ const projectListModule = (() => {
         event.preventDefault();
         let title = document.getElementById('title').value;
         projectDataModule.addProject(title);
-        const projectEntry = document.createElement('button');
-        projectEntry.textContent = title;
-        projectEntry.id = title;
-        projectListDIV.appendChild(projectEntry);
+        displayProjects();
+        // const projectEntry = document.createElement('button');
+        // projectEntry.textContent = title;
+        // projectEntry.id = title;
+        // projectListDIV.appendChild(projectEntry);
         popup.classList.remove('active');
         popup.classList.add('inactive');
     });
 
+    const displaytasks = () => {
+        listBox.innerHTML = '';//clear the div of text
+        
+        //display the project title
+        const listEntry = document.createElement('div');
+        listEntry.textContent = `Project: ` + projectId;
+        listEntry.id = projectId;
+        listBox.appendChild(listEntry);
+    
+    
+        //display the list of tasks
+        //get the current object
+        const currentProject = projectDataModule.getProject(projectId);
+        //create a container
+        const tasklist = document.createElement('div');
+        currentProject.tasks.forEach(task => {
+            const taskDiv = document.createElement('div');
+            taskDiv.textContent = task.taskTitle;
+            tasklist.appendChild(taskDiv);
+        });
+        
+    
+        //display the add new task button
+        const addNewTaskButton = document.createElement('button');
+        addNewTaskButton.textContent = 'Add new task';
+        addNewTaskButton.id = 'newTaskButton'
+        listEntry.appendChild(addNewTaskButton);    
+    }
+
     projectListDIV.addEventListener('click', (event) => {
         if (event.target.tagName === 'BUTTON') {
-            projectId = event.target.id;
-            listBox.innerHTML = '';
+            setProjectId(event.target.id);
+            //projectId = event.target.id;
+            displaytasks();
+
+            // listBox.innerHTML = '';
     
-            const listEntry = document.createElement('div');
-            listEntry.textContent = projectId;
-            listEntry.id = projectId;
+            // const listEntry = document.createElement('div');
+            // listEntry.textContent = `Project: ` + projectId;
+            // listEntry.id = projectId;
+
+            // const currentProject = () =>  projectDataModule.getProject(projectId);
+            // const tasklist = document.createElement('div');
     
-            const addNewTaskButton = document.createElement('button');
-            addNewTaskButton.textContent = 'Add new task';
-            addNewTaskButton.id = 'newTaskButton'
+            // const addNewTaskButton = document.createElement('button');
+            // addNewTaskButton.textContent = 'Add new task';
+            // addNewTaskButton.id = 'newTaskButton'
     
-            listEntry.appendChild(addNewTaskButton);
-            listBox.appendChild(listEntry);
-    
-            const findObject = projectDataModule.getProject(projectId);
+            // listEntry.appendChild(addNewTaskButton);
+            // listBox.appendChild(listEntry);    
         };
     });
+    
     const getProjectId = () => projectId;
 
 
     return{
         getProjectId,
-    };
+        displayProjects
+    };    
 })();
 
 //ListBoxModule.js
@@ -86,6 +148,7 @@ const ListBoxModule = (() => {
     const taskForm = document.getElementById('newTaskForm');
     let currentProject;
     
+    //newTask popup
     listBox.addEventListener('click', (event) => {
         if (event.target.id === 'newTaskButton') {
             console.log('you need a pop up');
@@ -100,9 +163,13 @@ const ListBoxModule = (() => {
         let projectId = projectListModule.getProjectId();
         console.log(projectId);
         let tasktitle = document.getElementById('taskTitle').value;
+
+
         currentProject = projectDataModule.getProject(projectId);
         // projectDataModule.projectData[currentProject].tasks = tasktitle; 
         currentProject.tasks.push(tasktitle);
+
+
         console.log(projectId, currentProject, projectDataModule);
         newTaskPop.classList.remove('active');
         newTaskPop.classList.add('inactive');
