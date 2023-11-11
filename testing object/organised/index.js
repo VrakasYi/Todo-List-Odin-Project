@@ -42,9 +42,9 @@ const projectListModule = (() => {
     let projectId;// Initialize the projectId variable
     
 
-    function setProjectId(id) {
-        projectId = id
-    };
+    // function setProjectId(id) {
+    //     projectId = id
+    // };
     
     //display the list of projects
     const displayProjects = () => {
@@ -95,6 +95,7 @@ const projectListModule = (() => {
             const taskDiv = document.createElement('div');
             taskDiv.textContent = task.taskTitle;
             tasklist.appendChild(taskDiv);
+            listBox.appendChild(tasklist);
         });
         
     
@@ -106,9 +107,9 @@ const projectListModule = (() => {
     }
 
     projectListDIV.addEventListener('click', (event) => {
-        if (event.target.tagName === 'BUTTON') {
-            setProjectId(event.target.id);
-            //projectId = event.target.id;
+        if (event.target.tagName === 'BUTTON') {            
+            //setProjectId(event.target.id);
+            projectId = event.target.id;
             displaytasks();
 
             // listBox.innerHTML = '';
@@ -162,8 +163,10 @@ const ListBoxModule = (() => {
         //reference the div id of the selected project 
         let projectId = projectListModule.getProjectId();
         console.log(projectId);
-        let tasktitle = document.getElementById('taskTitle').value;
-
+        let tasktitleValue = document.getElementById('taskTitle').value;
+        let tasktitle = {
+            taskTitle: tasktitleValue
+        }
 
         currentProject = projectDataModule.getProject(projectId);
         // projectDataModule.projectData[currentProject].tasks = tasktitle; 
