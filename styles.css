@@ -1,9 +1,20 @@
+@font-face {
+    font-family: Vonique64;
+    src: url('./Vonique64.ttf');
+}
+@font-face {
+    font-family: Dosis-SemiBold;
+    src: url('./Dosis-SemiBold.ttf');
+}
+
 body {
+    font-family: Vonique64;
     margin: 0px;
     padding: 0px;
     display: flex;
     flex-direction: column;
-    font-size: large;
+    font-size: 22px;
+    z-index: 1;
 }
 #header {
     display: flex;
@@ -12,6 +23,7 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    font-size: 45px;
 }
 #main{
     display: flex;
@@ -22,18 +34,20 @@ body {
 #left{
     display: flex;
     flex-direction: column;
-    background-color: darkseagreen;
+    background-color: rgb(145, 145, 145);
     width: 20vh;
     flex-grow: 1;
     padding: 15px;
     gap: 15px;
 }
 #left>button {
-    background-color: darkseagreen;
+    font-family: Dosis-SemiBold;
+    background-color: rgb(149, 205, 149);
     border: none;
-    font-size: large;
+    font-size: 25px;
     height: 45px;
     border-radius: 4px;
+    font-weight: bold;
     /* width: fit-content; */
 }
 #projectList {
@@ -41,25 +55,57 @@ body {
     flex-direction: column;
 }
 #projectList>button {
-    background-color: darkseagreen;
+    font-family: Dosis-SemiBold;
+    background-color: rgb(149, 205, 149);
     border: none;
-    font-size: large;
+    font-size: 25px;
+    /* font-size: large; */
     height: 45px;
     border-radius: 4px;
+    font-weight: bold;
     /* width: fit-content; */
 }
 #left>button:hover,
 #projectList>button:hover {
+
     background-color: seagreen;
+    color: #ffffff;
+    font-weight: bold;
 }
 #listBox {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(208, 208, 208);
     width: 100vh;
     flex-grow: 1;
 }
 .inactive {
     visibility: hidden;
+    width: 0px;
+    z-index: 0;
 }
 .active {
     visibility: visible;
+    z-index: 1;
+}
+
+#popup,
+#newTaskPop {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    width: 280px;
+    padding: 20px 30px;
+}
+.listEntry {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+.taskDiv {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
 }
