@@ -74,7 +74,7 @@ const projectListModule = (() => {
 
     const displaytasks = () => {
         listBox.innerHTML = '';//clear the div of text
-        console.log('1');
+        
         //display the project title
         const listEntry = document.createElement('div');
         listEntry.textContent = `Project: ` + projectId;
@@ -86,15 +86,12 @@ const projectListModule = (() => {
         taskHeader.classList.add('listEntry')
         listBox.appendChild(taskHeader)
     
-        console.log('1');
+    
         //display the list of tasks
         //get the current object
         const currentProject = projectDataModule.getProject(projectId);
         //create a container
         const tasklist = document.createElement('div');
-        tasklist.id = 'tasklist'
-        tasklist.textContent = 'tasklist';
-        console.log('1');
         currentProject.tasks.forEach(task => {
             const taskDiv = document.createElement('div');
             taskDiv.classList.add('taskDiv')
@@ -136,17 +133,7 @@ const ListBoxModule = (() => {
     const newTaskPop = document.getElementById('newTaskPop');
     //reference the new task pop up form
     const taskForm = document.getElementById('newTaskForm');
-
     let currentProject;
-    function displayTasks(){
-        currentProject.tasks.forEach(task => {
-            const taskDiv = document.createElement('div');
-            taskDiv.classList.add('taskDiv')
-            taskDiv.textContent = task.taskTitle;
-            tasklist.appendChild(taskDiv);
-            listBox.appendChild(tasklist);
-        });
-    }
     
     //newTask popup
     listBox.addEventListener('click', (event) => {
@@ -167,16 +154,9 @@ const ListBoxModule = (() => {
             taskTitle: tasktitleValue
         }
 
-        
         currentProject = projectDataModule.getProject(projectId);
         // projectDataModule.projectData[currentProject].tasks = tasktitle; 
         currentProject.tasks.push(tasktitle);
-        
-        //reference the task list container
-        const tasklist = document.getElementById('tasklist')
-        tasklist.innerHTML = '';
-        //const tasklist = document.createElement('div');
-        displayTasks();
 
 
         console.log(projectId, currentProject, projectDataModule);
