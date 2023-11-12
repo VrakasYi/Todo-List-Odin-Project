@@ -94,13 +94,13 @@ const projectListModule = (() => {
         const tasklist = document.createElement('div');
         tasklist.id = 'tasklist'
         tasklist.textContent = 'tasklist';
+        listBox.appendChild(tasklist);
         console.log('1');
         currentProject.tasks.forEach(task => {
             const taskDiv = document.createElement('div');
             taskDiv.classList.add('taskDiv')
             taskDiv.textContent = task.taskTitle;
             tasklist.appendChild(taskDiv);
-            listBox.appendChild(tasklist);
         });
         
     
@@ -144,7 +144,7 @@ const ListBoxModule = (() => {
             taskDiv.classList.add('taskDiv')
             taskDiv.textContent = task.taskTitle;
             tasklist.appendChild(taskDiv);
-            listBox.appendChild(tasklist);
+            //listBox.appendChild(tasklist);
         });
     }
     
@@ -174,6 +174,7 @@ const ListBoxModule = (() => {
         
         //reference the task list container
         const tasklist = document.getElementById('tasklist')
+        listBox.appendChild(tasklist);
         tasklist.innerHTML = '';
         //const tasklist = document.createElement('div');
         displayTasks(tasklist);
