@@ -138,7 +138,7 @@ const ListBoxModule = (() => {
     const taskForm = document.getElementById('newTaskForm');
 
     let currentProject;
-    function displayTasks(){
+    function displayTasks(tasklist){
         currentProject.tasks.forEach(task => {
             const taskDiv = document.createElement('div');
             taskDiv.classList.add('taskDiv')
@@ -176,7 +176,7 @@ const ListBoxModule = (() => {
         const tasklist = document.getElementById('tasklist')
         tasklist.innerHTML = '';
         //const tasklist = document.createElement('div');
-        displayTasks();
+        displayTasks(tasklist);
 
 
         console.log(projectId, currentProject, projectDataModule);
