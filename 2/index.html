@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORGANISED</title>
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="header">DO THE THING</div>
+    <div id="main">
+        <div id="left">
+            <div id="projectList">
+                <!-- <button class="projectButton">Default</button> -->
+            </div>
+            <button id="newList">New project</button>
+        </div>
+        <div id="popup" class="inactive">
+            <h3>Add a new project</h3> 
+            <!-- can use whitespace or 0 width -->
+            <form id="newListForm">
+                <div class="form-elemnt">
+                    <label for="title"></label>
+                    <input type="text" id="title" placeholder="New project">
+                </div>
+                <div id="popupButtCont">
+                    <button type="submit">Submit</button>
+                    <button type="button">Cancel</button>
+                </div>
+            </form>
+            <div id="newTaskPop" class="inactive">
+                 
+                <!-- can use whitespace or 0 width -->
+                <form id="newTaskForm">
+                    <div class="form-elemnt">
+                        <label for="title"></label>
+                        <input type="text" id="taskTitle" placeholder="New Task">
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div> 
+        </div>   
+        <div id="listBox">
+            
+        </div>
+    </div>
+</body>
+</html>

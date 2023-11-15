@@ -1,0 +1,133 @@
+@font-face {
+    font-family: Vonique64;
+    src: url('./fonts/Vonique64.ttf');
+}
+@font-face {
+    font-family: Dosis-SemiBold;
+    src: url('./fonts/Dosis-SemiBold.ttf');
+}
+@font-face {
+    font-family: Dosis-Medium;
+    src: url('./fonts/Dosis-Light.ttf');
+}
+
+body {
+    font-family: Dosis-SemiBold;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    height: 100vh;
+    /* z-index: 1; */
+}
+#header {
+    font-family: Vonique64;
+    display: flex;
+    height: 60px;
+    background-color: seagreen;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 45px;
+}
+#main{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 100vh;
+}
+#left{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(176 201 174);
+    width: 20vh;
+    /* flex-grow: 1; */
+    padding: 15px;
+    gap: 45px;
+}
+#left>button {
+    font-family: Dosis-SemiBold;
+    background-color: rgb(149, 205, 149);
+    border: none;
+    font-size: 25px;
+    height: 45px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px seagreen solid
+    /* width: fit-content; */
+}
+#projectList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#projectList>button {
+    font-family: Dosis-SemiBold;
+    background-color: rgb(149, 205, 149);
+    border: none;
+    font-size: 25px;
+    /* font-size: large; */
+    height: 45px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px seagreen solid
+    /* width: fit-content; */
+}
+#left>button:hover,
+#projectList>button:hover {
+
+    background-color: seagreen;
+    color: #ffffff;
+    font-weight: bold;
+}
+#listBox {
+    background-color: rgb(208, 208, 208);
+    width: 100vh;
+    flex-grow: 1;
+    font-family: Dosis-Medium;
+}
+.inactive {
+    visibility: hidden;
+    width: 0px;
+    z-index: 0;
+}
+.active {
+    visibility: visible;
+    z-index: 1;
+}
+
+#popup,
+#newTaskPop {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    width: 280px;
+    /* padding: 20px 30px; */
+    padding: 0px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#popupButtCont{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 0;
+}
+.listEntry {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.taskDiv {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
