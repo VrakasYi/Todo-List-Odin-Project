@@ -1,3 +1,6 @@
+export function modules() {
+
+
 // projectDataModule.js
 const projectDataModule = (() => {
     const projectData = [
@@ -175,3 +178,4 @@ const ListBoxModule = (() => {
         newTaskPop.classList.add('inactive');
     });
 })();
+}
