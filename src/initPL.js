@@ -22,11 +22,11 @@ export function initPL() {
     popup.id = 'popup';
     popup.classList.add('inactive')
     main.appendChild(popup);
-    
+
     //add the popup children
     const h3popup = document.createElement('h3');
     h3popup.textContent = 'Add a new project';
-    popup.appendChild('h3popup');
+    popup.appendChild(h3popup);
     const newListForm = document.createElement('form');
     newListForm.id = 'newListForm';
     popup.appendChild(newListForm);
@@ -36,7 +36,7 @@ export function initPL() {
     formElement.classList.add('form-element');
     newListForm.appendChild(formElement);
 
-    const label = document.createElement('label');
+    const label = document.createElement('label'); 
     label.setAttribute('for', 'title');
     formElement.appendChild(label);
 

@@ -1,6 +1,8 @@
 import { initPL } from './initPL.js';
-import { modules } from './modules.js'
+// import { ListboxModule } from './ListBoxModule.js'
+// import { projectDataModule } from './projectDataModule.js'
+// import { projectListModule } from './projectListModule.js'
 initPL();
-modules.projectDataModule();
-modules.projectListModule();
-modules.ListBoxModule();
+// ListboxModule();
+// projectDataModule();
+// projectListModule();
