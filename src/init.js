@@ -1,4 +1,5 @@
-export function initPL() {
+
+export function init() {
     const containerDiv = document.getElementById('content')
 
     const header = document.createElement('div');
@@ -48,7 +49,7 @@ export function initPL() {
 
     const popupButtonContainer = document.createElement('div');
     popupButtonContainer.id = 'popupButtCont';
-    popup.appendChild(popupButtonContainer);
+    newListForm.appendChild(popupButtonContainer);
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
@@ -74,15 +75,40 @@ export function initPL() {
     newTaskFormElement.classList.add('form-element');
     newTaskForm.appendChild(newTaskFormElement);
 
+    const taksH5 = document.createElement('h5');
+    taksH5.textContent = 'Title';
+    newTaskFormElement.appendChild(taksH5);
     const newTaskLabel = document.createElement('label');
+    //newTaskLabel.textContent = 'Title'
     newTaskLabel.setAttribute('for', 'taskTitle');
     newTaskFormElement.appendChild(newTaskLabel);
 
     const newTaskInput = document.createElement('input');
     newTaskInput.type = 'text';
     newTaskInput.id = 'taskTitle';
-    newTaskInput.placeholder = 'New Task';
+    //newTaskInput.placeholder = 'New Task';
     newTaskFormElement.appendChild(newTaskInput);
+
+    const prioH5 = document.createElement('h5');
+    prioH5.textContent = 'High priority';
+    newTaskFormElement.appendChild(prioH5);
+    const prioInput = document.createElement('input');
+    prioInput.type = 'checkbox';
+    prioInput.id = 'prio';
+    //prioInput.value = 'no';
+    // const prioH5 = document.createElement('label')
+    // prioH5.textContent = 'High prio';
+    // newTaskFormElement.appendChild(prioH5);
+    newTaskFormElement.appendChild(prioInput);
+
+    const dateH5 = document.createElement('h5');
+    dateH5.textContent = 'Date';
+    newTaskFormElement.appendChild(dateH5);
+    const dateInput = document.createElement('input');
+    dateInput.type = 'date';
+    dateInput.id = 'date';
+    dateInput.name = 'date';
+    newTaskFormElement.appendChild(dateInput);
 
     const newTaskSubmitButton = document.createElement('button');
     newTaskSubmitButton.type = 'submit';
