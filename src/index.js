@@ -3,19 +3,48 @@ init();
 
 // projectDataModule.js
 const projectDataModule = (() => {
-    const projectData = [
-        {
-            projectName: 'Default',
-            tasks: [
-                {
-                    taskTitle: 'Code the to do project',
-                    highPrio: true,
-                    date: '2023-11-31',
-                    //done: 'false'
-                },
-            ]
-        }
-    ];
+    // const projectData = [
+    //     {
+    //         projectName: 'Default',
+    //         tasks: [
+    //             {
+    //                 taskTitle: 'Code the to do project',
+    //                 highPrio: true,
+    //                 date: '2023-11-31',
+    //                 //done: 'false'
+    //             },
+    //         ]
+    //     }
+    // ];
+    
+    // (() => {
+    //     // Retrieve stored tasks from local storage
+    //     const storedTasks = Object.keys(localStorage)
+    //         .filter(key => key.startsWith('TaskNo'))
+    //         .map(key => JSON.parse(localStorage.getItem(key)));
+    
+    //     // Push stored tasks into the projectData array
+    //     projectData[0].tasks.push(...storedTasks);
+    // })();
+    let projectData = [];
+    if (!localStorage.getItem('localData')) {
+        projectData = [
+            {
+                projectName: 'Default',
+                tasks: [
+                    {
+                        taskTitle: 'Code the to do project',
+                        highPrio: true,
+                        date: '2023-11-31',
+                        //done: 'false'
+                    },
+                ]
+            }
+        ];
+    } else {
+        let storedData = JSON.parse(localStorage.getItem('localData'));
+        projectData.push(...storedData);
+    };
 
 
     const addProject = (title) => {
@@ -24,6 +53,8 @@ const projectDataModule = (() => {
             tasks: []
         };
         projectData.push(newProject);
+        //update the local storage
+        localStorage.setItem('localData', JSON.stringify(projectData));
     }
 
     const getProject = (title) => {
@@ -66,6 +97,7 @@ const projectListModule = (() => {
         popup.classList.add('active');
     });
 
+    //NEW PROJECT BUTTON
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         let title = document.getElementById('title').value;
@@ -187,6 +219,8 @@ const ListBoxModule = (() => {
         };
     });
     
+    //add new task form
+
     taskForm.addEventListener('submit', function(event) {
         event.preventDefault();
         //reference the div id of the selected project 
@@ -209,7 +243,17 @@ const ListBoxModule = (() => {
         currentProject = projectDataModule.getProject(projectId);
         // projectDataModule.projectData[currentProject].tasks = tasktitle; 
         currentProject.tasks.push(tasktitle);
-        
+
+        //update the local storage
+        localStorage.setItem('localData', JSON.stringify(projectDataModule.projectData));
+
+
+        // //find the number of the item in the list
+        // const taskNo = `TaskNo ${currentProject.tasks.length}`;
+    
+        // //put it in local storage
+        // localStorage.setItem(taskNo, JSON.stringify(tasktitle));
+
         //reference the task list container
         const tasklist = document.getElementById('tasklist')
         listBox.appendChild(tasklist);
