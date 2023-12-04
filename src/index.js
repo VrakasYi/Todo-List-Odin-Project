@@ -107,6 +107,7 @@ const projectListModule = (() => {
         popup.classList.add('inactive');
     });
 
+
     const displaytasks = () => {
         listBox.innerHTML = '';//clear the div of text
         //display the project title
@@ -130,25 +131,26 @@ const projectListModule = (() => {
         listBox.appendChild(tasklist);
 
         //ListBoxModule.displayTasks(tasklist);
-        currentProject.tasks.forEach(task => {
-            const taskDiv = document.createElement('div');
-            taskDiv.classList.add('taskDiv')
-            const tTitle = document.createElement('div');
-            tTitle.textContent = task.taskTitle;
-            taskDiv.appendChild(tTitle);
-            const tPrio = document.createElement('div');
-            if (task.highPrio === true) {
-                tPrio.textContent = 'High prio'
-            } else {
-                tPrio.textContent = 'Low prio'
-            }
-            taskDiv.appendChild(tPrio);
-            const tdate = document.createElement('div');
-            tdate.textContent = 'Due date: ' + task.date;
-            taskDiv.appendChild(tdate);
 
-            tasklist.appendChild(taskDiv);    
-        });
+        DPTModule.displayTasks1(currentProject, tasklist);
+        // currentProject.tasks.forEach(task => {
+        //     const taskDiv = document.createElement('div');
+        //     taskDiv.classList.add('taskDiv')
+        //     const tTitle = document.createElement('div');
+        //     tTitle.textContent = task.taskTitle;
+        //     taskDiv.appendChild(tTitle);
+        //     const tPrio = document.createElement('div');
+        //     if (task.highPrio === true) {
+        //         tPrio.textContent = 'High prio'
+        //     } else {
+        //         tPrio.textContent = 'Low prio'
+        //     }
+        //     taskDiv.appendChild(tPrio);
+        //     const tdate = document.createElement('div');
+        //     tdate.textContent = 'Due date: ' + task.date;
+        //     taskDiv.appendChild(tdate);
+        //     tasklist.appendChild(taskDiv);    
+        // });
         
     
         //display the add new task button
@@ -185,30 +187,30 @@ const ListBoxModule = (() => {
     const taskForm = document.getElementById('newTaskForm');
 
     let currentProject;
-    function displayTasks(tasklist){
-        currentProject.tasks.forEach(task => {
-            const taskDiv = document.createElement('div');
-            taskDiv.classList.add('taskDiv')
-            const tTitle = document.createElement('div');
-            tTitle.textContent = task.taskTitle;
-            taskDiv.appendChild(tTitle);
-            const tPrio = document.createElement('div');
-            if (task.highPrio === true) {
-                tPrio.textContent = 'High prio'
-            } else {
-                tPrio.textContent = 'Low prio'
-            }
-            taskDiv.appendChild(tPrio);
-            const tdate = document.createElement('div');
-            tdate.textContent = 'Due date: ' + task.date;
-            taskDiv.appendChild(tdate);
+    // function displayTasks(tasklist){
+    //     currentProject.tasks.forEach(task => {
+    //         const taskDiv = document.createElement('div');
+    //         taskDiv.classList.add('taskDiv')
+    //         const tTitle = document.createElement('div');
+    //         tTitle.textContent = task.taskTitle;
+    //         taskDiv.appendChild(tTitle);
+    //         const tPrio = document.createElement('div');
+    //         if (task.highPrio === true) {
+    //             tPrio.textContent = 'High prio'
+    //         } else {
+    //             tPrio.textContent = 'Low prio'
+    //         }
+    //         taskDiv.appendChild(tPrio);
+    //         const tdate = document.createElement('div');
+    //         tdate.textContent = 'Due date: ' + task.date;
+    //         taskDiv.appendChild(tdate);
 
-            // taskDiv.textContent = task.taskTitle;
-            tasklist.appendChild(taskDiv);
+    //         // taskDiv.textContent = task.taskTitle;
+    //         tasklist.appendChild(taskDiv);
         
-            //listBox.appendChild(tasklist);
-        });
-    }
+    //         //listBox.appendChild(tasklist);
+    //     });
+    // }
     
     //newTask popup
     listBox.addEventListener('click', (event) => {
@@ -258,13 +260,41 @@ const ListBoxModule = (() => {
         const tasklist = document.getElementById('tasklist')
         listBox.appendChild(tasklist);
         tasklist.innerHTML = '';
-        displayTasks(tasklist);
+        DPTModule.displayTasks1(currentProject, tasklist);
+        //displayTasks(tasklist);
 
         newTaskPop.classList.remove('active');
         newTaskPop.classList.add('inactive');
     });
 
+    // return {
+    //     displayTasks
+    // };
+})();
+
+const DPTModule = (() => {
+    function displayTasks1(currentProject, tasklist){
+        currentProject.tasks.forEach(task => {
+            const taskDiv = document.createElement('div');
+            taskDiv.classList.add('taskDiv')
+            const tTitle = document.createElement('div');
+            tTitle.textContent = task.taskTitle;
+            taskDiv.appendChild(tTitle);
+            const tPrio = document.createElement('div');
+            if (task.highPrio === true) {
+                tPrio.textContent = 'High prio'
+            } else {
+                tPrio.textContent = 'Low prio'
+            }
+            taskDiv.appendChild(tPrio);
+            const tdate = document.createElement('div');
+            tdate.textContent = 'Due date: ' + task.date;
+            taskDiv.appendChild(tdate);
+            tasklist.appendChild(taskDiv);    
+        });
+    }
+    
     return {
-        displayTasks
+        displayTasks1
     };
 })();
