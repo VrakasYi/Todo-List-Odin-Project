@@ -142,10 +142,20 @@ h5 {
     justify-content: space-around;
     margin: 10px;
     background-color: rgb(98, 175, 162);
+    border-radius: 4px;
 }
 .taskDiv > div {
     display: flex;
     flex: 1;
     justify-content: center;
     align-items: center;
+}
+.taskDiv > button {
+    border-radius: 4px;
+    border: 1px #a077dd solid;
+}
+#listBox > div > button {
+    height: 24px;
+    border: 1px #77bedd solid;
+    border-radius: 4px;
 }

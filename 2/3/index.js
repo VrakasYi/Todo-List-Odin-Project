@@ -3,7 +3,29 @@ init();
 
 // projectDataModule.js
 const projectDataModule = (() => {
-
+    // const projectData = [
+    //     {
+    //         projectName: 'Default',
+    //         tasks: [
+    //             {
+    //                 taskTitle: 'Code the to do project',
+    //                 highPrio: true,
+    //                 date: '2023-11-31',
+    //                 //done: 'false'
+    //             },
+    //         ]
+    //     }
+    // ];
+    
+    // (() => {
+    //     // Retrieve stored tasks from local storage
+    //     const storedTasks = Object.keys(localStorage)
+    //         .filter(key => key.startsWith('TaskNo'))
+    //         .map(key => JSON.parse(localStorage.getItem(key)));
+    
+    //     // Push stored tasks into the projectData array
+    //     projectData[0].tasks.push(...storedTasks);
+    // })();
     let projectData = [];
     if (!localStorage.getItem('localData')) {
         projectData = [
@@ -35,8 +57,8 @@ const projectDataModule = (() => {
         localStorage.setItem('localData', JSON.stringify(projectData));
     }
 
-    const getProject = (projectId) => {
-        return projectData.find(project => project.projectName === projectId);
+    const getProject = (title) => {
+        return projectData.find(project => project.projectName === title);
     }
 
 
@@ -102,14 +124,35 @@ const projectListModule = (() => {
         //display the list of tasks
         //get the current object
         const currentProject = projectDataModule.getProject(projectId);
-        //create a container, name it tasklist and insert it into listbox
+        //create a container
         const tasklist = document.createElement('div');
         tasklist.id = 'tasklist'
+        //tasklist.textContent = 'tasklist';
         listBox.appendChild(tasklist);
 
-        //display the current tasks
+        //ListBoxModule.displayTasks(tasklist);
+
         DPTModule.displayTasks1(currentProject, tasklist);
-         
+        // currentProject.tasks.forEach(task => {
+        //     const taskDiv = document.createElement('div');
+        //     taskDiv.classList.add('taskDiv')
+        //     const tTitle = document.createElement('div');
+        //     tTitle.textContent = task.taskTitle;
+        //     taskDiv.appendChild(tTitle);
+        //     const tPrio = document.createElement('div');
+        //     if (task.highPrio === true) {
+        //         tPrio.textContent = 'High prio'
+        //     } else {
+        //         tPrio.textContent = 'Low prio'
+        //     }
+        //     taskDiv.appendChild(tPrio);
+        //     const tdate = document.createElement('div');
+        //     tdate.textContent = 'Due date: ' + task.date;
+        //     taskDiv.appendChild(tdate);
+        //     tasklist.appendChild(taskDiv);    
+        // });
+        
+    
         //display the add new task button
         const addNewTaskButton = document.createElement('button');
         addNewTaskButton.textContent = 'Add new task';
@@ -142,7 +185,32 @@ const ListBoxModule = (() => {
     const newTaskPop = document.getElementById('newTaskPop');
     //reference the new task pop up form
     const taskForm = document.getElementById('newTaskForm');
+
     let currentProject;
+    // function displayTasks(tasklist){
+    //     currentProject.tasks.forEach(task => {
+    //         const taskDiv = document.createElement('div');
+    //         taskDiv.classList.add('taskDiv')
+    //         const tTitle = document.createElement('div');
+    //         tTitle.textContent = task.taskTitle;
+    //         taskDiv.appendChild(tTitle);
+    //         const tPrio = document.createElement('div');
+    //         if (task.highPrio === true) {
+    //             tPrio.textContent = 'High prio'
+    //         } else {
+    //             tPrio.textContent = 'Low prio'
+    //         }
+    //         taskDiv.appendChild(tPrio);
+    //         const tdate = document.createElement('div');
+    //         tdate.textContent = 'Due date: ' + task.date;
+    //         taskDiv.appendChild(tdate);
+
+    //         // taskDiv.textContent = task.taskTitle;
+    //         tasklist.appendChild(taskDiv);
+        
+    //         //listBox.appendChild(tasklist);
+    //     });
+    // }
     
     //newTask popup
     listBox.addEventListener('click', (event) => {
@@ -154,6 +222,7 @@ const ListBoxModule = (() => {
     });
     
     //add new task form
+
     taskForm.addEventListener('submit', function(event) {
         event.preventDefault();
         //reference the div id of the selected project 
@@ -180,6 +249,13 @@ const ListBoxModule = (() => {
         //update the local storage
         localStorage.setItem('localData', JSON.stringify(projectDataModule.projectData));
 
+
+        // //find the number of the item in the list
+        // const taskNo = `TaskNo ${currentProject.tasks.length}`;
+    
+        // //put it in local storage
+        // localStorage.setItem(taskNo, JSON.stringify(tasktitle));
+
         //reference the task list container
         const tasklist = document.getElementById('tasklist')
         listBox.appendChild(tasklist);
@@ -190,12 +266,15 @@ const ListBoxModule = (() => {
         newTaskPop.classList.remove('active');
         newTaskPop.classList.add('inactive');
     });
+
+    // return {
+    //     displayTasks
+    // };
 })();
 
 const DPTModule = (() => {
     function displayTasks1(currentProject, tasklist){
-        currentProject.tasks.forEach((task, index) => {
-            //create containers for the properties of each task
+        currentProject.tasks.forEach(task => {
             const taskDiv = document.createElement('div');
             taskDiv.classList.add('taskDiv')
             const tTitle = document.createElement('div');
@@ -211,18 +290,6 @@ const DPTModule = (() => {
             const tdate = document.createElement('div');
             tdate.textContent = 'Due date: ' + task.date;
             taskDiv.appendChild(tdate);
-
-            const delButton = document.createElement('button');
-            delButton.textContent = 'Delete'
-            
-            //add delete functionality
-            delButton.addEventListener('click', () => {
-                //tasklist.removeChild(taskDiv);
-                taskDiv.remove();
-                currentProject.tasks.splice(index, 1);                
-            });
-            
-            taskDiv.appendChild(delButton);
             tasklist.appendChild(taskDiv);    
         });
     }
@@ -231,8 +298,3 @@ const DPTModule = (() => {
         displayTasks1
     };
 })();
-
-// const DeleteButton = (() => {
-//     projectDataModule.projectData
-    
-// })();
