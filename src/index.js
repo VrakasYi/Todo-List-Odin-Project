@@ -192,6 +192,7 @@ const ListBoxModule = (() => {
     });
 })();
 
+//DisplayTasksModule
 const DPTModule = (() => {
     function displayTasks1(currentProject, tasklist){
         currentProject.tasks.forEach((task, index) => {
@@ -219,7 +220,9 @@ const DPTModule = (() => {
             delButton.addEventListener('click', () => {
                 //tasklist.removeChild(taskDiv);
                 taskDiv.remove();
-                currentProject.tasks.splice(index, 1);                
+                currentProject.tasks.splice(index, 1);      
+                //update the local storage
+                localStorage.setItem('localData', JSON.stringify(projectDataModule.projectData));          
             });
             
             taskDiv.appendChild(delButton);
@@ -231,8 +234,3 @@ const DPTModule = (() => {
         displayTasks1
     };
 })();
-
-// const DeleteButton = (() => {
-//     projectDataModule.projectData
-    
-// })();
