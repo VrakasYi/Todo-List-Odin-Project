@@ -1,4 +1,3 @@
-
 export function init() {
     const containerDiv = document.getElementById('content')
 
@@ -59,6 +58,7 @@ export function init() {
     const cancelButton = document.createElement('button');
     cancelButton.type = 'button';
     cancelButton.textContent = 'Cancel';
+    cancelButton.id = 'cancelNewProjectButton'
     popupButtonContainer.appendChild(cancelButton);
 
     const newTaskPop = document.createElement('div');
@@ -91,6 +91,7 @@ export function init() {
 
     const prioH5 = document.createElement('h5');
     prioH5.textContent = 'High priority';
+    prioH5.id = 'prioH5'
     newTaskFormElement.appendChild(prioH5);
     const prioInput = document.createElement('input');
     prioInput.type = 'checkbox';
@@ -109,11 +110,21 @@ export function init() {
     dateInput.id = 'date';
     dateInput.name = 'date';
     newTaskFormElement.appendChild(dateInput);
+    
+    const newTaskButtonContainer = document.createElement('div');
+    newTaskButtonContainer.id = 'newTaskButtonContainer';
+    newTaskForm.appendChild(newTaskButtonContainer);
 
     const newTaskSubmitButton = document.createElement('button');
     newTaskSubmitButton.type = 'submit';
     newTaskSubmitButton.textContent = 'Submit';
-    newTaskForm.appendChild(newTaskSubmitButton);
+    newTaskButtonContainer.appendChild(newTaskSubmitButton);
+
+    const newTaskCancel = document.createElement('button');
+    newTaskCancel.type = "button"; //<---NOTE
+    newTaskCancel.textContent = 'Cancel'
+    newTaskCancel.id = 'newTaskCancel';
+    newTaskButtonContainer.appendChild(newTaskCancel);
 
     const listBox = document.createElement('div');
     listBox.id = 'listBox';

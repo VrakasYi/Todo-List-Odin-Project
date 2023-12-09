@@ -55,6 +55,7 @@ const projectListModule = (() => {
     const popup = document.getElementById('popup');
     const form = document.getElementById('newListForm');
     const listBox = document.getElementById('listBox');
+    const cancelNewProjectButton = document.getElementById('cancelNewProjectButton');
     let projectId;// Initialize the projectId variable
     
     
@@ -70,12 +71,18 @@ const projectListModule = (() => {
     };
     displayProjects();
 
+    //NEW PROJECT BUTTON
     newListButton.addEventListener('click', () => {
         popup.classList.remove('inactive');
         popup.classList.add('active');
     });
 
-    //NEW PROJECT BUTTON
+    cancelNewProjectButton.addEventListener('click', () => {
+        popup.classList.remove('active');
+        popup.classList.add('inactive');
+    });
+
+    //NEW PROJECT SUBMIT FORM
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         let title = document.getElementById('title').value;
@@ -142,6 +149,7 @@ const ListBoxModule = (() => {
     const newTaskPop = document.getElementById('newTaskPop');
     //reference the new task pop up form
     const taskForm = document.getElementById('newTaskForm');
+    const newTaskCancel = document.getElementById('newTaskCancel');
     let currentProject;
     
     //newTask popup
@@ -151,6 +159,12 @@ const ListBoxModule = (() => {
             newTaskPop.classList.remove('inactive');
             newTaskPop.classList.add('active');
         };
+    });
+
+    //cancel the new task form
+    newTaskCancel.addEventListener('click', () => {
+        newTaskPop.classList.remove('active');
+        newTaskPop.classList.add('inactive');
     });
     
     //add new task form
