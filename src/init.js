@@ -1,4 +1,6 @@
+import './style.css';
 export function init() {
+
     const containerDiv = document.getElementById('content')
 
     const header = document.createElement('div');
